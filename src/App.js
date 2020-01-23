@@ -5,6 +5,7 @@ import './App.css';
 import Navbar from './components/navbar';
 import Login from './components/login';
 import Register from './components/register';
+import Profile from './components/profile';
 class App extends Component {
   render() {
     return (
@@ -14,6 +15,7 @@ class App extends Component {
           <div className="container">
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/profile" component={Profile} />
           </div>
         </div>
       </Router>

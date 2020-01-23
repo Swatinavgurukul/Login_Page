@@ -38,7 +38,7 @@ class Landing extends Component {
         </li>
       </ul>
     )
-
+      
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
         <button
@@ -60,7 +60,7 @@ class Landing extends Component {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link to="/" className="nav-link">
-                Home
+               Profile
               </Link>
             </li>
           </ul>

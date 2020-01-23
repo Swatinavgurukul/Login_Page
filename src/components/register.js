@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { register } from './userFunctions'
-
+import axios from 'axios'
 class Register extends Component {
   constructor() {
     super()
@@ -28,11 +27,23 @@ class Register extends Component {
       email: this.state.email,
       password: this.state.password
     }
-
-    register(newUser).then(res => {
-      this.props.history.push(`/login`)
+    console.log(JSON.stringify(newUser),"zebaSwati")
+  
+    axios.post("http://localhost:5000/registration/Register",{params:newUser})
+    .then(res=>{
+      // console.log(res,"Rashmi");
+      this.setState({
+        loading:false
+      })
+      this.props.history.push('/login')
     })
-  }
+    .catch(err=>{
+      this.setState({
+        loading:false
+      })
+    })
+  };
+ 
 
   render() {
     return (

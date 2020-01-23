@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { login } from './userFunctions'
+import axios from 'axios';
+import { reactLocalStorage } from "reactjs-localstorage";
 
 class Login extends Component {
   constructor() {
@@ -7,7 +8,8 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      errors: {}
+      errors: {},
+      loading:true
     }
 
     this.onChange = this.onChange.bind(this)
@@ -20,18 +22,33 @@ class Login extends Component {
   onSubmit(e) {
     e.preventDefault()
 
-    const user = {
-      email: this.state.email,
-      password: this.state.password
-    }
+    // const user = {
+    //   email: this.state.email,
+    //   password: this.state.password
+    // }
+    // console.log(JSON.stringify(user),"zebaSwati")
+  
+    axios.post("http://localhost:5000/registration/Login",{email: this.state.email,
+    password: this.state.password})
+    .then(res=>{
 
-    login(user).then(res => {
-      if (res) {
-        this.props.history.push(`/profile`)
-      }
+      reactLocalStorage.set("Token",res.data.token);
+      
+      this.setState({
+        loading : false
+      })
+      this.props.history.push('/profile')
     })
-  }
+    .catch(err=>{
+      this.setState({
+        loading : false
+      })
+    })
+  };
 
+
+  
+  
   render() {
     return (
       <div className="container">
