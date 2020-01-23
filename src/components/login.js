@@ -21,13 +21,6 @@ class Login extends Component {
   }
   onSubmit(e) {
     e.preventDefault()
-
-    // const user = {
-    //   email: this.state.email,
-    //   password: this.state.password
-    // }
-    // console.log(JSON.stringify(user),"zebaSwati")
-  
     axios.post("http://localhost:5000/registration/Login",{email: this.state.email,
     password: this.state.password})
     .then(res=>{
@@ -45,10 +38,6 @@ class Login extends Component {
       })
     })
   };
-
-
-  
-  
   render() {
     return (
       <div className="container">
